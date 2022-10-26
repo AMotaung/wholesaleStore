@@ -18,9 +18,11 @@ public class Product {
     private String modified;
 
     public Product() {
+        super();
     }
 
     public Product(int productId, String productName, double price, String description, String specification, String photo, int quantity, String createdAt, String modified) {
+        super();
         this.productId = productId;
         this.productName = productName;
         this.price = price;
