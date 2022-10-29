@@ -16,12 +16,17 @@ public class Product {
     private int quantity;
     private String createdAt;
     private String modified;
+    private int categoryId;
+
+    @ManyToOne
+    @JoinColumn(name = "categoryId", insertable = false, updatable = false)
+    private ProductCategory productCategory;
 
     public Product() {
         super();
     }
 
-    public Product(int productId, String productName, double price, String description, String specification, String photo, int quantity, String createdAt, String modified) {
+    public Product(int productId, String productName, double price, String description, String specification, String photo, int quantity, String createdAt, String modified, int categoryId) {
         super();
         this.productId = productId;
         this.productName = productName;
@@ -32,6 +37,7 @@ public class Product {
         this.quantity = quantity;
         this.createdAt = createdAt;
         this.modified = modified;
+        this.categoryId = categoryId;
     }
 
     public int getProductId() {
@@ -104,6 +110,18 @@ public class Product {
 
     public void setModified(String modified) {
         this.modified = modified;
+    }
+
+    public int getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(int categoryId) {
+        this.categoryId = categoryId;
+    }
+
+    public void setProductCategory(ProductCategory productCategory) {
+        this.productCategory = productCategory;
     }
 
     @Override
