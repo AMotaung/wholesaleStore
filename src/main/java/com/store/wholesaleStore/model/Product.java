@@ -17,17 +17,21 @@ public class Product {
     private String createdAt;
     private String modified;
     private int categoryId;
+    private int discountId;
 
     @ManyToOne
     @JoinColumn(name = "categoryId", insertable = false, updatable = false)
     private ProductCategory productCategory;
 
+    @ManyToOne
+    @JoinColumn(name = "discountId", insertable = false, updatable = false)
+    private Discount discount;
+
     public Product() {
         super();
     }
 
-    public Product(int productId, String productName, double price, String description, String specification, String photo, int quantity, String createdAt, String modified, int categoryId) {
-        super();
+    public Product(int productId, String productName, double price, String description, String specification, String photo, int quantity, String createdAt, String modified, int categoryId, int discountId) {
         this.productId = productId;
         this.productName = productName;
         this.price = price;
@@ -38,6 +42,7 @@ public class Product {
         this.createdAt = createdAt;
         this.modified = modified;
         this.categoryId = categoryId;
+        this.discountId = discountId;
     }
 
     public int getProductId() {
@@ -120,8 +125,20 @@ public class Product {
         this.categoryId = categoryId;
     }
 
+    public int getDiscountId() {
+        return discountId;
+    }
+
+    public void setDiscountId(int discountId) {
+        this.discountId = discountId;
+    }
+
     public void setProductCategory(ProductCategory productCategory) {
         this.productCategory = productCategory;
+    }
+
+    public void setDiscount(Discount discount) {
+        this.discount = discount;
     }
 
     @Override
@@ -136,6 +153,10 @@ public class Product {
                 ", quantity=" + quantity +
                 ", createdAt='" + createdAt + '\'' +
                 ", modified='" + modified + '\'' +
+                ", categoryId=" + categoryId +
+                ", discountId=" + discountId +
+                ", productCategory=" + productCategory +
+                ", discount=" + discount +
                 '}';
     }
 }
