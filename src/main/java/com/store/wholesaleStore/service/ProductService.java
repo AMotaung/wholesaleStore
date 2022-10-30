@@ -3,6 +3,9 @@ package com.store.wholesaleStore.service;
 import com.store.wholesaleStore.dao.ProductDao;
 import com.store.wholesaleStore.model.Product;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -38,5 +41,12 @@ public class ProductService {
     //Deeleing all products
     public void deleteAllProducts(){
         productDao.deleteAll();
+    }
+
+    //Paging
+    public List<Product> FindPaginated(int pageNo, int pageSize){
+        Pageable paging = PageRequest.of(pageNo -1, pageSize);
+        Page<Product> pagedResult = productDao.findAll(paging);
+        return pagedResult.toList();
     }
 }

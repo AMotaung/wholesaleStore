@@ -77,6 +77,10 @@ public class ProductController {
          productService.deleteAllProducts();
     }
 
-
+    //Paging
+    @GetMapping(value = "/product/{pageNo}/{pageSize}")
+    public List<Product> getPaginated(@PathVariable int pageNo, @PathVariable int pageSize){
+        return productService.FindPaginated(pageNo,pageSize);
+    }
 
 }
